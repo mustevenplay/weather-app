@@ -29,14 +29,20 @@ main {
 
 #query-content {
   margin-top: 1.8rem;
+  padding: 1.1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-#location {
+#city {
   font: bold 1em/1.5em sans-serif;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+}
+
+#city-info {
+  font: 1em/1.5em sans-serif;
+  text-transform: uppercase;
+  color: #0008;
 }

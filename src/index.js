@@ -1,7 +1,8 @@
 
 // HTML elements
 const [latitude_in, longitude_in] = document.querySelectorAll('.coordinate-directive');
-const location_out = document.querySelector('#location');
+const city_out = document.querySelector('#city');
+const cityInfo_out = document.querySelector('#city-info');
 const temperature_out = document.querySelector('#temperature');
 const forecast_out = document.querySelector('#forecast');
 
@@ -46,11 +47,27 @@ async function checkLocation (latitude, longitude) {
   try {
     const locationData = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`);
     const locationDataObj = await locationData.json();
-    console.log(locationDataObj);
-    return locationDataObj.display_name != undefined ? locationDataObj.display_name : 'Unknown';
+
+    if (locationDataObj.display_name == undefined) {
+      return [undefined, undefined];
+    }
+
+    let city;
+    let cityInfo = [];
+
+    locationDataObj.display_name.split(', ').forEach( (elem, i) => {
+      if (i === 0) {
+        city = elem
+      } else {
+        cityInfo.push(elem);
+      }
+    });
+
+    return [city, cityInfo.join('\n')];
+
   } catch (e) {
     console.error(e);
-    return 'Unknown';
+    return [undefined, undefined];
   }
 }
 
@@ -66,10 +83,18 @@ function updateWeatherData () {
     .then( (response) => response.json())
     .then( async (obj) => {
       const current_weather = obj.current_weather;
-      location_out.innerText = await checkLocation(latitude, longitude);
+      const [city, cityInfo] = await checkLocation(latitude, longitude);
+
+      // Setting the data into the DOM
+      if (city == undefined) {
+        city_out.innerText = 'Unknown';
+        cityInfo_out.innerText =  'Unknown';
+      } else {
+        city_out.innerText = city;
+        cityInfo_out.innerText = cityInfo;
+      }
       temperature_out.innerText = `${current_weather.temperature}ºC`;
       forecast_out.innerText = `${forecastDecoder(current_weather.weathercode)}`;
-      console.log(obj);
     })
     .catch(console.error);
 
