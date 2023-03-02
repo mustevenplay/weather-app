@@ -3,10 +3,19 @@
   font: 17px sans-serif;
 }
 
+body {
+  margin: 0;
+  padding: 0 12.5%;
+}
+
 main {
+  background-color: #FFF;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 3px solid #333;
+  border-top: none;
+  padding-bottom: 2rem;
 }
 
 #controls {
@@ -45,4 +54,13 @@ main {
   font: 1em/1.5em sans-serif;
   text-transform: uppercase;
   color: #0008;
+  margin-bottom: 1.4rem;
+}
+
+#forecast {
+  font: 2.4rem sans-serif;
+}
+
+#temperature {
+  font: bold 4.3rem sans-serif;
 }
