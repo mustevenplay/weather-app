@@ -41,6 +41,24 @@ function forecastDecoder (code) {
   }
 }
 
+// Getitng colors by weather code for body's background
+function colorsByWeatherCode (code) {
+  if (code === 0) {
+    return ['gold', 'lightcyan'];
+  } else if (code >= 1 && code <= 3) {
+    return ['khaki', 'lightcyan'];
+  } else if (code == 45 || code == 48) {
+    return ['lightgray', 'lightblue'];
+  } else if (code == 51 || code == 53 || code >= 55 && code <= 57
+             || code == 61 || code == 63 || code >= 65 && code <= 67
+             || code == 71 || code == 73 || code >= 75 && code <= 77
+             || code == 85 || code == 86) {
+    return ['lightgray', 'snow'];
+  } else if (code == 95 || code == 96 || code == 99) {
+    return ['gray', 'lightgray'];
+  }
+}
+
 // Checking for location with coordinates gotten by weather API
 // (Nominatim Geocoding API)
 async function checkLocation (latitude, longitude) {
@@ -95,6 +113,8 @@ function updateWeatherData () {
       }
       temperature_out.innerText = `${current_weather.temperature}ºC`;
       forecast_out.innerText = `${forecastDecoder(current_weather.weathercode)}`;
+      const weatherColors = colorsByWeatherCode(current_weather.weathercode);
+      document.querySelector('body').style.background = `linear-gradient(to bottom, ${weatherColors[0]}, ${weatherColors[1]})`;
     })
     .catch(console.error);
 
