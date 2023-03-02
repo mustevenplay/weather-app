@@ -81,4 +81,14 @@ main > h1 {
   font: bold 4.3rem sans-serif;
 }
 
+@media (max-width: 430px) {
+  :root {
+    font-size: 12px;
+  }
+
+  #controls {
+    flex-direction: column;
+  }
+}
+
 /*# sourceMappingURL=index.61d3354a.css.map */
