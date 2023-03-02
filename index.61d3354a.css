@@ -9,13 +9,17 @@ body {
 }
 
 main {
-  background-color: #fff;
-  border: 3px solid #333;
+  background: radial-gradient(#ddd, #fff);
   border-top: none;
+  border-radius: 0 0 18px 18px;
   flex-direction: column;
   align-items: center;
   padding-bottom: 2rem;
   display: flex;
+}
+
+main > h1 {
+  text-shadow: -4px 4px #aaf8;
 }
 
 #controls {
@@ -30,10 +34,22 @@ main {
 #coordinate-submit {
   width: 100%;
   text-transform: uppercase;
+  cursor: pointer;
+  background-color: #cde;
+  border: 1px solid #555;
+  border-radius: 12px;
   margin-top: 1rem;
   padding: 1rem;
   font: bold 1rem sans-serif;
   display: block;
+}
+
+#coordinate-submit:hover {
+  box-shadow: inset 0 0 10px #55c8;
+}
+
+#coordinate-submit:active {
+  box-shadow: inset 0 0 10px #0008;
 }
 
 #query-content {
