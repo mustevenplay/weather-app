@@ -82,3 +82,15 @@ main > h1 {
 #temperature {
   font: bold 4.3rem sans-serif;
 }
+
+@media (max-width: 430px) {
+
+  :root {
+    font-size: 12px;
+  }
+
+  #controls {
+    flex-direction: column;
+  }
+
+}
