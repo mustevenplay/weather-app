@@ -123,4 +123,12 @@ function updateWeatherData () {
 // Submiting weather parameters
 document.querySelector('#coordinate-submit').addEventListener('click', updateWeatherData);
 
+// Ask for location permission
+navigator.geolocation.getCurrentPosition( function (pos) {
+  const coordinates = pos.coords;
+  latitude_in.value = coordinates.latitude;
+  longitude_in.value = coordinates.longitude;
+  updateWeatherData();
+});
+
 updateWeatherData();
