@@ -21,15 +21,24 @@ main {
 }
 
 main > h1 {
+  font-size: 2.8rem;
   text-shadow: -4px 4px 0 #AAF8;
 }
 
 #controls {
   display: flex;
+  color: #AAA;
+  justify-content: space-between;
   gap: 1rem;
 }
 
 #controls input {
+  margin-top: 8px;
+  color: #666;
+  font-size: .8rem;
+  padding: 2px;
+  border: 1px solid #AAA;
+  border-radius: 4px;
   display: block;
 }
 
