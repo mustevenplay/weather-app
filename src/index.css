@@ -25,6 +25,58 @@ main > h1 {
   text-shadow: -4px 4px 0 #AAF8;
 }
 
+#query-mode {
+  color: #CCC;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+#query-mode > * {
+  width: calc(100%/3);
+}
+
+#query-mode > div:first-child {
+  padding-right: 1rem;
+  text-align: right;
+}
+
+#query-mode > div:last-child {
+  padding-left: 1rem;
+  text-align: left;
+}
+
+#query-switch {
+  display: flex;
+  width: 6rem;
+  align-items: center;
+  height: 2.1rem;
+  border: 3px solid #CCC;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#query-switch:hover {
+  border-color: #999;
+}
+
+#query-switch > div {
+  margin: 0 .2rem;
+  background-color: #229;
+  height: 1.8rem;
+  width: 1.8rem;
+  border-radius: 50%;
+  transition: .2s;
+}
+
+#query-switch:hover > div {
+  background-color: #44B;
+}
+
 #controls {
   display: flex;
   color: #AAA;
