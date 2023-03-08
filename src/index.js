@@ -41,7 +41,7 @@ function forecastDecoder (code) {
   }
 }
 
-// Getitng colors by weather code for body's background
+// Getting colors by weather code for body's background
 function colorsByWeatherCode (code) {
   if (code === 0) {
     return ['gold', 'lightcyan'];
@@ -59,7 +59,7 @@ function colorsByWeatherCode (code) {
   }
 }
 
-// Checking for location with coordinates gotten by weather API
+// Checking for location with coordinates gotten by geolocation API
 // (Nominatim Geocoding API)
 async function checkLocation (latitude, longitude) {
   try {
