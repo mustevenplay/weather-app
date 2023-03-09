@@ -152,14 +152,40 @@ main > h1 {
   font: bold 4.3rem sans-serif;
 }
 
-@media (max-width: 430px) {
+@media (max-width: 530px) {
 
   :root {
-    font-size: 12px;
+    font-size: 14px;
+  }
+
+  #control-container {
+    width: 240px;
   }
 
   #controls {
     flex-direction: column;
+    align-items: center;
+  }
+
+}
+
+@media (max-width: 420px) {
+
+  :root {
+    font-size: 13px;
+  }
+
+}
+
+
+@media (max-width: 380px) {
+
+  :root {
+    font-size: 11px;
+  }
+
+  #control-container {
+    width: 200px;
   }
 
 }
