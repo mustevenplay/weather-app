@@ -25,6 +25,10 @@ main > h1 {
   text-shadow: -4px 4px 0 #AAF8;
 }
 
+#control-container {
+  width: 369px;
+}
+
 #query-mode {
   color: #CCC;
   font-weight: bold;
