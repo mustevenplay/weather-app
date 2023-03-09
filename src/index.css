@@ -80,7 +80,7 @@ main > h1 {
 #controls {
   display: flex;
   color: #AAA;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1rem;
 }
 

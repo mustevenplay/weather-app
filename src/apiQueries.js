@@ -1,37 +1,23 @@
 
-// Checking for location with coordinates gotten by geolocation API
+// Checks location with custom query gotten by geolocation API
 // (Nominatim Geocoding API)
-export async function checkLocation (latitude, longitude) {
+export async function checkLocationBy (queryType, query) {
+  const url = queryType == 'coordinates'
+    ? `https://nominatim.openstreetmap.org/reverse?format=json&lat=${query[0]}&lon=${query[1]}&zoom=10`
+    : `https://nominatim.openstreetmap.org/search?city=${query}&format=json`;
   try {
-    let locationData = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`);
-    locationData = await locationData.json();
-
-    if (locationData.display_name == undefined) {
-      return [undefined, undefined];
-    }
-
-    let city;
-    let cityInfo = [];
-
-    locationData.display_name.split(', ').forEach( (elem, i) => {
-      if (i === 0) {
-        city = elem
-      } else {
-        cityInfo.push(elem);
-      }
-    });
-
-    return [city, cityInfo.join('\n')];
-
+    let locationData = await fetch(url);
+    return await locationData.json();
   } catch (e) {
     console.error(e);
-    return [undefined, undefined];
+    return {};
   }
 }
 
 // Checks weather with weather API
 // (Open-Meteo Weather API)
-export async function checkWeather (latitude, longitude) {
+export async function checkWeather (coordinates) {
+  const [latitude, longitude] = coordinates;
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
   let weatherData = await fetch(url);
   weatherData = await weatherData.json();
