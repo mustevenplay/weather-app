@@ -101,7 +101,7 @@ main > h1 {
   display: block;
 }
 
-#coordinate-submit {
+#submit-button {
   color: #999;
   display: block;
   width: 100%;
@@ -115,11 +115,11 @@ main > h1 {
   cursor: pointer;
 }
 
-#coordinate-submit:hover {
+#submit-button:hover {
   box-shadow: 0 0 8px #8888 inset;
 }
 
-#coordinate-submit:active {
+#submit-button:active {
   box-shadow: 0 0 8px #66C8 inset;
 }
 
