@@ -8,6 +8,7 @@ const queryMode_in = document.querySelector('#query-mode');
 const querySwitch_in = queryMode_in.querySelector('#query-switch');
 const queryModeLabels = document.querySelectorAll('.query-mode-label');
 const controls = document.querySelector('#controls');
+const submitButton = document.querySelector('#submit-button');
 const city_out = document.querySelector('#city');
 const cityInfo_out = document.querySelector('#city-info');
 const temperature_out = document.querySelector('#temperature');
@@ -107,7 +108,7 @@ async function updateWeatherData () {
 querySwitch_in.addEventListener('click', toggleQueryMode);
 
 // Submiting weather parameters
-document.querySelector('#coordinate-submit').addEventListener('click', submitQuery);
+submitButton.addEventListener('click', submitQuery);
 
 
 /* Initial protocol */
