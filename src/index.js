@@ -85,16 +85,8 @@ async function updateLocationData () {
   coordinates[0] = locationData.lat;
   coordinates[1] = locationData.lon;
 
-  let city;
-  let cityInfo = [];
-
-  locationData.display_name.split(', ').forEach( (elem, i) => {
-    if (i === 0) {
-      city = elem
-    } else {
-      cityInfo.push(elem);
-    }
-  });
+  let cityInfo = locationData.display_name.split(', ') ;
+  let city = cityInfo.shift();
   cityInfo = cityInfo.join('\n');
 
   if (city == undefined) {
