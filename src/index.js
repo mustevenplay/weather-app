@@ -55,24 +55,6 @@ function toggleQueryMode () {
   updateQueryMode();
 }
 
-// Updates input data and starts query process
-async function submitQuery () {
-  if (queryModeIsCity) {
-    cityName = document.querySelector('#city-directive').value;
-  } else {
-    const coordinates_in = document.querySelectorAll('.coordinate-directive');
-    coordinates[0] = coordinates_in[0].value;
-    coordinates[1] = coordinates_in[1].value;
-  }
-  updateData();
-}
-
-// Evaluates the query parameters, queries the API, and displays the information in a single function
-async function updateData () {
-  await updateLocationData();
-  await updateWeatherData();
-}
-
 // Checks, arranges and displays location data
 async function updateLocationData () {
   let locationData;
@@ -106,6 +88,24 @@ async function updateWeatherData () {
   forecast_out.innerText = `${forecastDecoder(currentWeather.weathercode)}`;
   const weatherColors = colorsByWeatherCode(currentWeather.weathercode);
   document.querySelector('body').style.background = `linear-gradient(to bottom, ${weatherColors[0]}, ${weatherColors[1]})`;
+}
+
+// Evaluates the query parameters, queries the API, and displays the information in a single function
+async function updateData () {
+  await updateLocationData();
+  await updateWeatherData();
+}
+
+// Updates input data and starts query process
+async function submitQuery () {
+  if (queryModeIsCity) {
+    cityName = document.querySelector('#city-directive').value;
+  } else {
+    const coordinates_in = document.querySelectorAll('.coordinate-directive');
+    coordinates[0] = coordinates_in[0].value;
+    coordinates[1] = coordinates_in[1].value;
+  }
+  updateData();
 }
 
 
