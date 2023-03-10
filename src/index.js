@@ -64,21 +64,24 @@ async function submitQuery () {
     coordinates[0] = coordinates_in[0].value;
     coordinates[1] = coordinates_in[1].value;
   }
+  updateData();
+}
+
+// Evaluates the query parameters, queries the API, and displays the information in a single function
+async function updateData () {
+  await updateLocationData();
   await updateWeatherData();
 }
 
-// Evaluates the query parameters, queries the API, and displays the information
-async function updateWeatherData () {
-
+// Checks, arranges and displays location data
+async function updateLocationData () {
   let locationData;
-
   if (queryModeIsCity) {
     locationData = await checkLocationBy('cityName', cityName);
     locationData = locationData[0];
   } else {
     locationData = await checkLocationBy('cityName', coordinates);
   }
-
   coordinates[0] = locationData.lat;
   coordinates[1] = locationData.lon;
 
@@ -101,7 +104,10 @@ async function updateWeatherData () {
     city_out.innerText = city;
     cityInfo_out.innerText = cityInfo;
   }
+}
 
+// Checks and displays weather data
+async function updateWeatherData () {
   const currentWeather = await checkWeather(coordinates);
 
   temperature_out.innerText = `${currentWeather.temperature}ºC`;
@@ -128,5 +134,5 @@ navigator.geolocation.getCurrentPosition( async function (pos) {
   cityName = cityData.display_name.split(', ')[0];
 
   updateQueryMode();
-  updateWeatherData();
+  await updateData();
 });
