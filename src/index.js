@@ -3,7 +3,8 @@ import {checkWeather, checkLocationBy} from './apiQueries.js';
 import {forecastDecoder, colorsByWeatherCode} from './weatherDataHandling.js';
 
 
-// HTML elements
+
+/* HTML elements */
 const queryMode_in = document.querySelector('#query-mode');
 const querySwitch_in = queryMode_in.querySelector('#query-switch');
 const queryModeLabels = document.querySelectorAll('.query-mode-label');
@@ -15,10 +16,14 @@ const temperature_out = document.querySelector('#temperature');
 const forecast_out = document.querySelector('#forecast');
 
 
-// Global
+/* Global */
 let queryModeIsCity = true;
 let cityName = '', coordinates = ['', ''];
 
+
+/* Function defining */
+
+// Updates everything related to the query mode switch
 function updateQueryMode () {
   if (queryModeIsCity) {
     querySwitch_in.style.justifyContent = 'left';
@@ -44,12 +49,13 @@ function updateQueryMode () {
   }
 }
 
-// Toggle query mode
+// Toggles between the query modes
 function toggleQueryMode () {
   queryModeIsCity = !queryModeIsCity;
   updateQueryMode();
 }
 
+// Updates input data and starts query process
 async function submitQuery () {
   if (queryModeIsCity) {
     cityName = document.querySelector('#city-directive').value;
@@ -61,6 +67,7 @@ async function submitQuery () {
   await updateWeatherData();
 }
 
+// Evaluates the query parameters, queries the API, and displays the information
 async function updateWeatherData () {
 
   let locationData;
@@ -97,7 +104,6 @@ async function updateWeatherData () {
 
   const currentWeather = await checkWeather(coordinates);
 
-  // Setting the data into the DOM
   temperature_out.innerText = `${currentWeather.temperature}ºC`;
   forecast_out.innerText = `${forecastDecoder(currentWeather.weathercode)}`;
   const weatherColors = colorsByWeatherCode(currentWeather.weathercode);
@@ -105,14 +111,12 @@ async function updateWeatherData () {
 }
 
 
+/* onClick Event Listeners */
 querySwitch_in.addEventListener('click', toggleQueryMode);
-
-// Submiting weather parameters
 submitButton.addEventListener('click', submitQuery);
 
 
 /* Initial protocol */
-
 updateQueryMode();
 
 // Ask for location permission
