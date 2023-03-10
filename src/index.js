@@ -80,7 +80,7 @@ async function updateLocationData () {
     locationData = await checkLocationBy('cityName', cityName);
     locationData = locationData[0];
   } else {
-    locationData = await checkLocationBy('cityName', coordinates);
+    locationData = await checkLocationBy('coordinates', coordinates);
   }
   coordinates[0] = locationData.lat;
   coordinates[1] = locationData.lon;
